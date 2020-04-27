@@ -2,6 +2,6 @@
 * [ES6](ES6/promise)
 * [Vue](Vue/errow)
 * [CSS](CSS/home)
- *[Git](Git/git)
+* [Git](Git/git)
 
 
