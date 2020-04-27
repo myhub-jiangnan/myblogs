@@ -1,8 +1,0 @@
-dir: docs
-output: dist
-site: Documents
-theme: oceandeep
-customization: false
-themeDir: loppo-theme
-direction: ltr
-id: notes

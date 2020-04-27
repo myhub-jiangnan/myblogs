@@ -1,63 +1,21 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <title>江南的博客</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-    <link rel="stylesheet" href="./dist/assets/css/bulma.min.css">
-    <link rel="stylesheet" href="./dist/assets/css/app.css">
-    <link rel="stylesheet" href="./dist/assets/css/min.css">
-    <link rel="shortcut icon" href="">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
-
-<body dir="ltr">
-    <nav class="columns navbar">
-        <div class="column logo is-3 is-offset-1"><a class="is-brand " href="./index.html">博客</a></div>
-    </nav>
-    <div class="columns content">
-        <div class="column is-2-desktop is-3-widescreen is-hidden-touch"></div>
-        <div class="column article-container is-11-tablet is-8-desktop is-6-widescreen">
-            <!-- <div class="breadcrumb-area"><a href="./index.html" class="breadcrumb-item">首页</a></div> -->
-            <div class="sentance">
-                <h1>怕什么真理无穷,</h1>
-                <h1>进一步,&nbsp 有进一步欢喜。</h1>
-            </div>
-            <div class="article">
-                <ul class="chapter-area">
-                    <!-- <li class="chapter-item"><a href="./readme.html" target="_blank">ES6</a></li> -->
-                </ul>
-            </div>
-        </div>
-        <div class="column is-2-widescreen is-hidden"></div>
-    </div>
-    <!-- 侧边栏目录 -->
-    <div class="book-toc notification  is-link ">
-        <h3>目录 &nbsp;</h3>
-        <ul class=" chapter-area">
-            <li class="chapter-item"><a href="dist/html/ES6.html" target="_blank">ES6</a></li>
-            <li class="chapter-item"><a href="dist/html/Vue.html" target="_blank">Vue</a></li>
-            <li class="chapter-item"><a href="dist/html/Vue.html" target="_blank">CSS库</a></li>
-            <li class="chapter-item"><a href="dist/html/微信小程序.html" target="_blank">微信小程序</a></li>
-        </ul>
-    </div>
-    <!-- 底部网站信息 -->
-    <div class="columns foot">
-        <div class="column is-3 is-offset-9 build-by"></div>
-    </div>
-
-    <div class="progress-indicator"></div><!-- SCRIPTS -->
-    <script>
-        var LOPPO = {
-            current_path: "/",
-            relative_root_path: "./",
-            article_toc: ""
-        }
-    </script>
-    <script src="./dist/assets/js/app.js"></script>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: '',
+      repo: ''
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 </body>
-
 </html>
