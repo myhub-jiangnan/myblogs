@@ -1,6 +1,7 @@
 ### 目录
 * [ES6](ES6/promise)
 * [Vue](Vue/errow)
-* [CSS](CSS)
+* [CSS](CSS/home)
+ *[Git](Git/git)
 
 
