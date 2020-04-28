@@ -1,8 +1,8 @@
 
-
+>
 # Vant 常用组件
 
->## vant  提供了一些组件和函数，全局引入vant 后， 函数需要注册后才能用
+>### vant  提供了一些组件和函数，全局引入vant 后，组件可以直接用，但是 <font color="#42B983">函数需要注册后才能用</font>。 
 ```
   import vant from "vant"
   import  Vue from "vue"
@@ -49,8 +49,26 @@
 ```
 1.   v-model属性 ： 布尔值， 是否显示弹出层，默认false;
 2.  overlay ： 是否显示遮罩层， 默认是 true 
-3.  position :  弹出位置
+3.  position :  弹出位置;
 
-## 消息组件
+> ## van-field 输入框
+```javasrcipt
+<van=field v-model="" 
+type="password"
+ required
+ input-align="center"
+ error-messge="密码格式不正确"
+ readonly
+ disabled
+ :rule="[]" />
 
-### Dialog
+```
+将field 输入框放入 van-form 表单组件中，还可以设置校验属性 :rule="[]"
+
+> ## van-password-input   密码输入框， 有明文和密码展示
+
+> ## van-picker  选择器
+
+> ## 图片预览 函数
+
+>## 

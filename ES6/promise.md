@@ -16,9 +16,9 @@
 ```
 
 
-## 常用API
+## <font color="42B983"> Promise常用API</font>
 
-### 1.Promise.prototype.then()
+ ### 1.Promise.prototype.then()
 ####  then 方法定义在Promise 构造函数的原型对象上，作为Promise 实例对象的回调函数，当Promise 的实例状态为已完成，就调用该方法； 
 
 ### 2. Promise.prototype.catch()
