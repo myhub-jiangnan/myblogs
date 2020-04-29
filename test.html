@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+       let arr = [1,2,3,4,5] ;
+     let arr02 =  arr.forEach(item=>{
+           return  item*2
+       })
+       console.log("for h"+arr02);
+
+      
+    
+    let obj = { 
+        name:"jack",
+        age:1866
+    }
+    for(let key of obj){  
+        console.log(`${key}: ${obj[key]}`)
+    }
+
+
+    let arr05 = [1,2,3,4,5] 
+    let newArr=  arr05.reduce((pre,item) => {
+        return  pre + item
+    }) 
+   console.log(newArr);
+    </script>
+</body>
+
+</html>

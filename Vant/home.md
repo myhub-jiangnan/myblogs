@@ -63,7 +63,33 @@ type="password"
  :rule="[]" />
 
 ```
-将field 输入框放入 van-form 表单组件中，还可以设置校验属性 :rule="[]"
+将field 输入框放入 van-form 表单组件中，还可以设置校验属性 :rule="[]"，比如手机号的校验
+
+```
+
+data(){
+  return {
+      phoneRules:[{
+        required：true,
+        message:"手机号未录入"
+        trigger:"onBlur",
+         {
+      required: true,
+      message: '手机号码未录入!',
+      trigger: 'onChange'
+        },
+      {
+       pattern: /(^$)|^1[34578]\d{9}$/,
+      message: '请输入正确的手机号码!',
+      trigger: 'onChange'
+      }
+      }]
+  }
+}
+
+ <van-field :rule="[phoneRules]"></van-field>
+```
+
 
 > ## van-password-input   密码输入框， 有明文和密码展示
 
