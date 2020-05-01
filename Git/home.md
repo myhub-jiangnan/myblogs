@@ -23,4 +23,7 @@
 ## git push branchName
 > 推送代码到远程仓库某个分支
 
+## Esc + ：wq +  enter
+> 有时候merge 或者pull 的时候，会提示"Please enter a commit message to explain why this merge is necessary." 意思是解释一下为什么要合并代码，可以不用解释， 按ESC , 输入冒号：wq  回车就行。
+
 
