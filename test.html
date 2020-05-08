@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 30px;
+            background: red;
+            margin: 0 auto;
+        }
+    </style>
 </head>
-
 <body>
-
+    <div>
+        <div class="box1"> </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
-       let arr = [1,2,3,4,5] ;
-     let arr02 =  arr.forEach(item=>{
-           return  item*2
-       })
-       console.log("for h"+arr02);
+    new Vue({
+      el:"#app",
+      data: {
+        title:"标题",
 
-      
-    
-    let obj = { 
-        name:"jack",
-        age:1866
-    }
-    for(let key of obj){  
-        console.log(`${key}: ${obj[key]}`)
-    }
+      },
+      methods:{
 
+      },
+      computed:{
 
-    let arr05 = [1,2,3,4,5] 
-    let newArr=  arr05.reduce((pre,item) => {
-        return  pre + item
-    }) 
-   console.log(newArr);
+      },
+      created(){
+                 
+      },
+      mounted(){
+
+      }
+    })
+
     </script>
 </body>
 
