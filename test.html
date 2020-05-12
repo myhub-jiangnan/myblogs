@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.common.js"></script> -->
     <style>
         .app {
             border: 1px solid blue;
@@ -30,68 +31,42 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="app">
+    <div id="app">
         <div class="box1"> </div>
+        <input type="text" v-model="inputData" @input="newRearch">
     </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
         new Vue({
             el: "#app",
             data: {
                 title: "标题1111",
-
+                inputData: "text",
+                counter: 0,
+                // 防抖函数
             },
             methods: {
-                say: () => {
-                    console.log("我是say方法");
-                    console.log(this);
-                },
-                run() {
-                    console.log("我是run方法");
-                    let obj = {
-                        walk: () => {
-                            console.log("我是walk");
-                            console.log(this);
-                        },
-                        sing(){
-                            console.log("我是sing");
-                            console.log(this);
-                        }
-                    }
-                    obj.walk();
-                    obj.sing();
+                search(){
+                  this.counter++ 
+                  console.log(`已发送${this.counter}次请求`);
                 }
-
             },
             computed: {
-
+              newRearch : function(){
+                  return _.throttle(this.search,1000)
+              }
             },
             created() {
-                // console.log(this);
-                // console.log(this.title);
-                // const arrow = ()=>{
-                //     console.log(this);
-                // }
-                // arrow()
-                this.say();
-                this.run();
 
             },
-            mounted: () => {
-                console.log("mounted中");
-                console.log(this);
+            mounted() {
+            //熟悉盒模型 定位属性 
+            // 熟悉ES6  vue  
             }
         })
-        let obj = {
-            name: "jack",
-            run() {
-                console.log("runioooong");
-
-            }
-        }
-        obj.run();
+       
     </script>
 </body>
 
