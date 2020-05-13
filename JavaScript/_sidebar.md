@@ -1,4 +1,4 @@
-# 目录
+# 目录JavaScript
 * [数据类型](JavaScript/数据类型)
 * [条件语句](JavaScript/条件语句)
 * [遍历](JavaScript/遍历)
