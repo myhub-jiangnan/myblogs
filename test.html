@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.common.js"></script> -->
+    <style>
+        .app {
+            border: 1px solid blue;
+            overflow: hidden;
+            /* 不推荐 */
+        }
+
+        .app::after {
+            content: '';
+            display: table;
+            clear: both;
+            /* 推荐  */
+        }
+
+        .box1 {
+            float: right;
+            left: 100px;
+            right: 100px;
+            width: 100px;
+            height: 30px;
+            background: red;
+            margin-right: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="box1"> </div>
+        <input type="text" v-model="inputData" @input="newRearch">
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                title: "标题1111",
+                inputData: "text",
+                counter: 0,
+                // 防抖函数
+            },
+            methods: {
+                search(){
+                  this.counter++ 
+                  console.log(`已发送${this.counter}次请求`);
+                }
+            },
+            computed: {
+              newRearch : function(){
+                  return _.throttle(this.search,1000)
+              }
+            },
+            created() {
+
+            },
+            mounted() {
+            //熟悉盒模型 定位属性 
+            // 熟悉ES6  vue  
+            }
+        })
+       
+    </script>
+</body>
+
+</html>

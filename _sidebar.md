@@ -8,6 +8,8 @@
 * [Element](Element/home)
 * [Vant](Vant/home)
 * [Git](Git/home)
+* [代码库](代码库/表单校验)
+* [工具箱](工具箱/home)
 * [Markdown语法](Markdown/home)
 * [面试整理](面试整理/home)
 
