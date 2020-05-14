@@ -3,7 +3,7 @@
 * [条件语句](JavaScript/条件语句)
 * [遍历](JavaScript/遍历)
 * [对象](JavaScript/对象)
-* [作用域](JavaScript/作用域)
+* [闭包和作用域](JavaScript/闭包和作用域)
 * [this用法](JavaScript/this用法)
 * [原型，原型对象，原型链](JavaScript/原型，原型对象，原型链)
 * [事件委托](JavaScript/事件委托)
