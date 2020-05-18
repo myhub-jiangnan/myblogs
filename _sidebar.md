@@ -2,7 +2,7 @@
 * [JavaScript](JavaScript/事件委托)
 * [ES6](ES6/promise)
 * [CSS](CSS/home)
-* [Vue](Vue/vue学习笔记01)
+* [Vue](Vue/创建vue项目)
 * [微信小程序](微信小程序/home)
 * [NodeJs](NodeJs/home)
 * [Element](Element/home)
