@@ -21,3 +21,24 @@
   this.$refs.userName.resetFields() // 只重置 userName 输入框的值;
 
 ```
+
+---
+
+## 修改input 样式
+   
+```javascript
+ /deep/ .el-textarea {
+                        padding: 0;
+                        padding-left: 0.1rem;
+                        border: none;
+                        height: 100%;
+                        // border: 1px solid red;
+                    }
+
+ /deep/ .el-textarea__inner {
+                        height: 100%;
+                        padding: 0;
+                        border: none;
+                    }
+
+```
