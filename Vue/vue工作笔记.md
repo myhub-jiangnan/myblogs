@@ -1,5 +1,10 @@
 
-## 高德地图
+
+## 23.  vm.$emit() 和vm.$on() 
+  
+
+
+## 22. 高德地图
    https://blog.csdn.net/weixin_47155055/article/details/105587047
    https://www.jianshu.com/p/0011996b81e2
  
