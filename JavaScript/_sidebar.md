@@ -2,6 +2,7 @@
 
 * [JavaScript核心原理解析](JavaScript/JavaScript核心原理解析)
 * [数据类型](JavaScript/数据类型)
+* [数组和字符串常用方法](JavaScript/数组常用方法)
 * [条件语句](JavaScript/条件语句)
 * [遍历](JavaScript/遍历)
 * [对象](JavaScript/对象)
@@ -15,5 +16,4 @@
 * [深拷贝](JavaScript/如何实现深拷贝)
 * [防抖和节流](JavaScript/防抖和节流)
 * [null和undefined的区别](JavaScript/null和undefined的区别)
-
 * [前端发展历程](JavaScript/前端发展历程)

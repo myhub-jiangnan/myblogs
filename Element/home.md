@@ -42,3 +42,35 @@
                     }
 
 ```
+
+## upload  上传文件
+
+upload  上传图片文件的时候，要注意传到后端的数据应该是 form 格式， 通过 new FormData()创建一个实例对象，
+
+```javascript
+  在上传成功的钩子函数中，将file 添加到 form对象中
+
+  data(){
+      return {
+          formData: new FormData()
+      }
+  }
+
+   methods:{
+     // 图片上传成功钩子
+      upLoadSuccess(response, file, fileList) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+                this.upFile = fileList
+                console.log(file);
+                this.formData.append("file", file)
+                // 上传图片获得图片id
+                imgUpload({
+                    file: this.formData
+                }).then(res => {
+                    let resData = res.data.result.id
+                })
+            },
+
+   }
+```
