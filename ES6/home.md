@@ -74,3 +74,23 @@
     map.set(undefined,"rose")  // 键可以是undefied
   
 ```
+
+-----
+
+# Iterator(遍历器)
+
+JavaScript中表示“集合”的数据结构，主要是数组(Array)和对象(Object)， ES6新增了Map 和Set ；现在有了4种集合。
+
+Iterator 是一种接口，为不同的数据结构提供统一的访问机制。任何数据结构只要部署了Iterator接口，就可以完成遍历操作 ；
+ES6提供了新的遍历命令for...of 循环；
+
+在ES6中有些数据结构原生具备Iterator接口(数组)，一种数据结构 只要部署了Iterator接口，我们就称这种数据结构是可遍历的；
+
+
+
+
+
+
+
+
+

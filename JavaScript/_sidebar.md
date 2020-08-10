@@ -8,6 +8,7 @@
 * [对象](JavaScript/对象)
 * [闭包和作用域](JavaScript/闭包和作用域)
 * [this用法](JavaScript/this用法)
+* [JavaScript执行机制](JavaScript/JavaScript执行机制)
 * [原型，原型对象，原型链](JavaScript/原型，原型对象，原型链)
 * [事件委托](JavaScript/事件委托)
 * [事件循环机制](JavaScript/事件循环机制)
