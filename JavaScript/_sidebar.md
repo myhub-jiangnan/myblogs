@@ -18,3 +18,4 @@
 * [防抖和节流](JavaScript/防抖和节流)
 * [null和undefined的区别](JavaScript/null和undefined的区别)
 * [前端发展历程](JavaScript/前端发展历程)
+* [零散知识点](JavaScript/零散知识点)

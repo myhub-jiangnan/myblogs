@@ -43,6 +43,28 @@
 
 ```
 
+## 输入框 图标垂直居中样式
+```javascript
+        // 控制输入空高度
+     /deep/ .el-input__inner {
+                height: 0.4rem !important;
+                // padding: 0;
+              }
+    
+      //  控制图标居中
+              /deep/ .el-input__icon {
+                // border: 1px solid blue;
+                // display: flex;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.05rem;
+                align-items: center;
+                line-height: 0;
+                font-size: 0.14rem;
+              }
+```
+
 ## upload  上传文件
 
 upload  上传图片文件的时候，要注意传到后端的数据应该是 form 格式， 通过 new FormData()创建一个实例对象，
@@ -73,4 +95,16 @@ upload  上传图片文件的时候，要注意传到后端的数据应该是 fo
             },
 
    }
+```
+
+------
+
+## 分页
+
+```javascript
+   //tableData 是后端返回的数组
+ updateTableData() {
+                return this.tableData.slice((this.currentPage - 1) * this.pagesize, this.currentPage * this.pagesize)
+            }
+
 ```
