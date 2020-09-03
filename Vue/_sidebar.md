@@ -11,4 +11,4 @@
 * [vue学习笔记01](Vue/vue学习笔记01)
 * [vue工作笔记](Vue/vue工作笔记)
 * [vue中打包相关问题](Vue/vue中打包相关问题)
-                       
+* [vue小知识](Vue/vue小知识)

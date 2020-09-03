@@ -1,5 +1,23 @@
 
 
+
+> Vue.use(Element, {
+  size: 'small',
+  i18n: (key, value) => i18n.t(key, value)
+})
+> vue.use()  https://blog.csdn.net/lxiang222/article/details/103376150
+> import * as user from './modules/user'
+ 将user里导出的变量都放进user 对象里
+
+
+
+## 25. 虚拟机 
+
+虚拟机，就是在你的操作系统里面，装一个软件，然后通过这个软件，再模拟一台甚至多台“子电脑”出来。
+Docker 是一个用于开发，交付和运行应用程序的开放平台。
+虚拟机（virtual machine）就是带环境安装的一种解决方案。它可以在一种操作系统里面运行另一种操作系统
+
+
 ## 24. 如何避免if 嵌套过深
 ## 23.  vm.$emit() 和vm.$on() 
   

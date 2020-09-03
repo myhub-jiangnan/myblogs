@@ -68,11 +68,11 @@ let x  ; const x ；  var x ； function x ； class x  ; import (导入标识�
 3. 保留字  不能作为标识符
 4. 字面量：  布尔值字面量 true ,false ; 字符串字面量：“hello js”
 
-### 类型： 语言类型（数据类型）和规范类型(元值，描述语言结构的语义)
+> 类型： 语言类型（数据类型）和规范类型(元值，描述语言结构的语义)
 
-### 语言类型： String Number Boolean Null Undefined Object (Object, Function)
+> 语言类型： String Number Boolean Null Undefined Object (Object, Function)
 
-### 规范类型： 引用，列表，词法环境 ； (规范类型用来描述表达式运算的中间结果，但这样的值不能存储为对象的属性或变量值)
+> 规范类型： 引用，列表，词法环境 ； (规范类型用来描述表达式运算的中间结果，但这样的值不能存储为对象的属性或变量值)
 
 
 ## 执行环境：
