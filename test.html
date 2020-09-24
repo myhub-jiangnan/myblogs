@@ -5,68 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.common.js"></script> -->
     <style>
-        .app {
-            border: 1px solid blue;
+        .con {
+            border: 1px solid red;
+            position: relative;
+            display: inline-block;
+            height: 200px;
+            width: 200px;
+        }
+
+        .percent-circle {
+            position: absolute;
+            height: 100%;
+            background: #f00;
             overflow: hidden;
-            /* 不推荐 */
         }
 
-        .app::after {
-            content: '';
-            display: table;
-            clear: both;
-            /* 推荐  */
-        }
-
-        .box1 {
-            float: right;
-            left: 100px;
-            right: 100px;
+        .percent-circle-left {
             width: 100px;
-            height: 30px;
-            background: red;
-            margin-right: 100px;
+            border-radius: 100px 0 0 100px/100px 0 0 100px;
+        }
+
+        .percent-circle-left .left-content {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            transform-origin: right center;
+            transform: rotate(0deg);
+            border-radius: 100px 0 0 100px/100px 0 0 100px;
+            background: #bbb;
+        }
+
+        .percent-circle-right {
+            right: 0;
+            width: 100px;
+            border-radius: 0 100px 100px 0/0 100px 100px 0;
+        }
+
+        .percent-circle-right .right-content {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            transform-origin: left center;
+            transform: rotate(0deg);
+            border-radius: 0 100px 100px 0/0 100px 100px 0;
+            background: #bbb;
+        }
+
+        .text-circle {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80%;
+            width: 80%;
+            left: 10%;
+            top: 10%;
+            border-radius: 100%;
+            background: white;
+            color: red;
         }
     </style>
 </head>
-<body>
-    <div id="app">
-        <div class="box1"> </div>
-        <input type="text" v-model="inputData" @input="newRearch">
-    </div>
-    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                title: "标题1111",
-                inputData: "text",
-                counter: 0,
-                // 防抖函数
-            },
-            methods: {
-                search(){
-                  this.counter++ 
-                  console.log(`已发送${this.counter}次请求`);
-                }
-            },
-            computed: {
-              newRearch : function(){
-                  return _.throttle(this.search,1000)
-              }
-            },
-            created() {
 
-            },
-            mounted() {
-            //熟悉盒模型 定位属性 
-            // 熟悉ES6  vue  
-            }
-        })
-       
+<body>
+    <div class="con">
+        <div class="percent-circle percent-circle-left">
+            <div class="left-content"></div>
+        </div>
+        <div class="percent-circle percent-circle-right">
+            <div class="right-content"></div>
+        </div>
+        <div class="text-circle">0%</div>
+    </div>
+    <script>
+        var leftContent = document.querySelector(".left-content");
+        var rightContent = document.querySelector(".right-content");
+        var textCircle = document.querySelector(".text-circle");
+        leftContent.setAttribute('style', 'transform: rotate(' + 90 + 'deg)');
+    </script>
+    <script>
+        let defineReactive = function (obj, key, val) {
+            let Dep; // 收集依赖的数组
+            // 数据劫持
+            Object.defineProperty(obj, key, {
+                enumerable: true,
+                get() {
+                    console.log(`读取了对象的${JSON.stringify(key)}属性`);
+                    Dep.depend(); // 添加依赖
+                    return val
+
+                },
+                set(newVal) {
+                    if (newVal === val) {
+                        return
+                    }
+                    val = newVal
+                    Dep.notify(); // 通知依赖去更新
+                    console.log(`修改了对象的${key}属性值`);
+
+                }
+            })
+        }
+
+        let data = {
+            name: "江南"
+        }
+        // 数据劫持
+        defineReactive(data, "name", data.name)
+        console.log(data.name);
+        data.name = "江北"
+
+ //    一个属性对应一个Dep,  
+
+
+  //  Dep.target 
+
+  // 编译模板的时候，遇到特殊指令比如： v-model="name" , 在准备为name 创建watcher 之前，先把它挂在在全局静态变量Dep.target 上，然后出发一次get()函数
+
+
+
+
+
+
+
     </script>
 </body>
 

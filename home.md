@@ -1,23 +1,63 @@
+#  ToDoList
 
->
->
+> Object.defineproperty()  value，writeable 和 get()set() 不能同时用
 
->
->
->
+> 《剖析 Vue.js 内部运行机制》
 
-<font color="#42B983">
+> 1. vue3.0 学习
 
-# 不积跬步，无以至千里。
->
----
-# 人生没有平凡无奇的时刻，  
-# 活在当下，
-# 没有开始，没有结束。
----
->
+> 2. 要习惯阅读英文文档
 
-# "我要是做不到呢？"
-# "斩断这个念头，那是未来的事。"
 
-</font>
+
+
+-------
+
+
+
+1. creatApp() 代替通过构造函数来创建vue 实例；
+
+Vue.createApp().$mount("#app")
+
+2. 核心： 数据绑定和组件化开发
+
+vue 响应系统
+
+3. application API 
+   
+```
+   app.mixin()
+   app.mount()
+   app.use()
+
+```
+
+4. global API
+
+```
+Vue.createApp()
+
+
+
+```
+
+5. 实例属性
+
+
+this.$paretent
+
+this.$root
+
+this.refs  // 有ref属性的组件
+
+
+
+
+
+7. composition API 
+
+
+
+
+
+   

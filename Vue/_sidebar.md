@@ -1,4 +1,7 @@
 # 目录
+
+* [Vue响应式原理](Vue/Vue响应式原理)
+* [Vue3.0](Vue/vue3.0学习笔记)
 * [创建vue项目](Vue/创建vue项目)
 * [vue生命周期](Vue/生命周期)
 * [父子组件通信](Vue/父子组件通信)
@@ -11,4 +14,5 @@
 * [vue学习笔记01](Vue/vue学习笔记01)
 * [vue工作笔记](Vue/vue工作笔记)
 * [vue中打包相关问题](Vue/vue中打包相关问题)
+* [Vue.use()](Vue/Vue.use())
 * [vue小知识](Vue/vue小知识)
