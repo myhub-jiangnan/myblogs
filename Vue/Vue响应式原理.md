@@ -19,7 +19,7 @@ https://www.cnblogs.com/fundebug/p/responsive-vue.html
 
 1.监听数据数据的变化 （数据劫持/数据代理）
 
-2. 收集视图层依赖了哪些数据（依赖收集）
+2. 收集视图层依赖了哪些数据（依赖收集，getter相关的逻辑就是做依赖收集，而Dep是整个依赖收集的核心）
 
 3. 数据变化时，自动“通知”需要更新视图的部分进行更新(发布订阅模式)
 
@@ -137,9 +137,10 @@ class Vue {
 
 > ### 总结
 
- Object.definePropery() 中的getter()和setter() 用来监听数据的访问和修改
+ 1. Object.definePropery() 中的getter()和setter() 用来监听数据的访问和修改，把data对象变成响应式对象
 
- Dep订阅者类用来提供一个存放Watcher对象的数组，同时还提供向这个数组中添加watcher 对象的方法(收集依赖)，还有通知数组中的所有watcher对象调用更新视图的方法(派发更新视图)
+
+ 2. Dep类用来提供一个存放Watcher对象的数组，同时还提供向这个数组中添加watcher 对象的方法(收集依赖)，还有通知数组中的所有watcher对象调用更新视图的方法(派发更新视图)
 
 访问某个属性时，自动调用getter()函数，在getter()函数中将watcher添加到订阅Dep ,即收集到了一个依赖，当修改数据时，自动调用setter()函数，在setter()函数中调用render()重新渲染;
 
@@ -161,3 +162,16 @@ Dep
 Observe中进行数据劫持，在数据被读取时，触发get方法，执行Dep 来收集依赖，也就是收集Watcher。
 
 在数据被修改时，触发set方法，通过对应的所有依赖(watcher)，去执行更新，比如watch 和computed 就执行开发者自定义的回调方法。
+
+
+
+通过Object.defineproperty()做好数据的监听，即Object.defineproperty()的参数有会传入一个对象，该对象的属性被读取时，就调用会自动调用get()，当该
+属性被修改时，会自动调用set();
+
+当我们用vue特有的指令，引用该对象的属性时，通过编译就能识别出该属性被读取，这时就触发get(), 在get()里我们将这些被引用的属性收集起来，
+
+watcher 原理  https://www.jianshu.com/p/6ceb1691f8ad
+
+每个vue 实例都有一个专属的watcher,    多个watcher 保存在 Dep 类中;
+
+当某个vue 实例的某个属性被引用时，该实例的watcher 就会被放入 Dep 类的 subs 数组中

@@ -12,6 +12,47 @@
    });
    varlidate((a,b)=>{})  // validate 方法接收一个回调函数作为参数，回调函数的两个参数，分别表示校验的结果，和校验不通过的字段
 ```
+## validateField（）对部分表单字段进行校验的方法
+
+```JavaScript
+     
+      data(){
+        return {
+             // 获取验证码
+                TIME_COUNT: 60, //更改倒计时时间
+                show: true, //  控制显示“获取验证码” 还是60s 倒计时
+                count: '', // 倒计时数字
+                timer: null,   // setInterval（）返回的ID 值，可用作clearInterval（）方法的参数
+                showDialog: true
+        }
+      }
+   
+     this.$refs.refValue.validateField("某个字段", error=>{
+       if(!error){
+         // 验证通过了要进行的操作
+
+           if (this.TIME_COUNT == 60) {
+                            if (!this.timer) {
+                                this.count = this.TIME_COUNT;
+                                this.show = false;
+                                this.timer = setInterval(() => {
+                                    if (this.count > 0 && this.count <= this
+                                        .TIME_COUNT) {
+                                        this.count--;
+                                    } else {
+                                        this.show = true;
+                                        clearInterval(this.timer); // 清除定时器
+                                        this.timer = null;
+                                    }
+                                }, 1000)
+                            }
+                            
+                            }
+       }
+     })
+
+```
+
 
 ##  重置表单 resetFields()
 > 重置表单后，如果在data 里设置了初始值，则为初始值；
