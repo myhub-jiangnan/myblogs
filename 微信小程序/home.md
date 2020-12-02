@@ -53,3 +53,25 @@
                     [item]: true
                 })
             }
+
+
+
+-----------------------------------------------------------
+
+> 13.  动态css
+
+   <view class="item {{item.name=='项目'? 'active':''}}"  wx:for="{{title}}">{{item.name}}</view>
+
+
+> 14. 事件的回调函数 传参
+
+```
+ <view class="del" bindtap="edit"  data-projectid="{{item.projectId}}">编辑</view>
+  edit(e) {
+        let projectId = e.currentTarget.dataset['projectid']
+        console.log("项目id:" + projectId);
+       
+    },
+```
+
+> 15. wx:if

@@ -16,3 +16,4 @@
 * [vue中打包相关问题](Vue/vue中打包相关问题)
 * [Vue.use()](Vue/Vue.use())
 * [vue小知识](Vue/vue小知识)
+* [vue项目打包后文件路径问题](Vue/vue项目打包后文件路径问题)
