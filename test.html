@@ -121,11 +121,14 @@
  //    一个属性对应一个Dep,  
 
 
-  //  Dep.target 
+  //  Dep.target   
 
   // 编译模板的时候，遇到特殊指令比如： v-model="name" , 在准备为name 创建watcher 之前，先把它挂在在全局静态变量Dep.target 上，然后出发一次get()函数
 
-
+   Observe()  // 观测数据
+   Dep()   // 管理依赖
+   Watcher()  //  每一个Watcher 实例对应一个依赖
+   VNode()  // 生一个虚拟DOM
 
 
 

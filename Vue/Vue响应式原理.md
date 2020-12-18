@@ -37,7 +37,7 @@ Object.defineProperty(obj, prop, descriptor)
  Object.defineProperty(obj, prop, {
 configurable: true,// 为true时该属性才可以被修改和删除
 value:   , // 该属性对应的值
-get:    , //  该属性的getter函数，当访问该属性时就会调用getter()函数，该函数的返回值会作为该属性的值，默认为undefined
+get:    , // 对象取值时会调用get方法，取到的值为get方法返回的值，默认为undefined
 set:    , //  该属性的setter函数，当该属性值被修改时，就会调用setter()函数,在setter 函数里触发render()函数
        就可以重新渲染页面
 

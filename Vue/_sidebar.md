@@ -1,6 +1,7 @@
 # 目录
 
 * [Vue响应式原理](Vue/Vue响应式原理)
+* [Object.defineProperty](Vue/Object.defineProperty)
 * [Vue3.0](Vue/vue3.0学习笔记)
 * [创建vue项目](Vue/创建vue项目)
 * [vue生命周期](Vue/生命周期)
