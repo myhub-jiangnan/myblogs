@@ -91,6 +91,8 @@
             let Dep; // 收集依赖的数组
             // 数据劫持
             Object.defineProperty(obj, key, {
+                writable:true,
+                value:"jack",
                 enumerable: true,
                 get() {
                     console.log(`读取了对象的${JSON.stringify(key)}属性`);
@@ -98,7 +100,8 @@
                     return val
 
                 },
-                set(newVal) {
+                
+                set(newVal) {                     
                     if (newVal === val) {
                         return
                     }
@@ -111,7 +114,7 @@
         }
 
         let data = {
-            name: "江南"
+            // name: "江南"
         }
         // 数据劫持
         defineReactive(data, "name", data.name)
