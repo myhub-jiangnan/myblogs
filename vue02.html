@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+  
+
+     let handler = {
+         get(target,name){
+             console.log("target:",target);
+             console.log("name:",name);
+             return "hello"
+         }
+         
+     }
+
+     let p = new Proxy({},handler)
+
+     p.a = 1
+     p.b = 1111
+     console.log(p.a);
+     console.log(p.b);
+
+
+
+    </script>
+</body>
+
+</html>
