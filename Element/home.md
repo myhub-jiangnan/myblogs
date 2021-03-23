@@ -62,25 +62,54 @@
   this.$refs.userName.resetFields() // 只重置 userName 输入框的值;
 
 ```
-
 ---
 
 ## 修改input 样式
    
 ```javascript
- /deep/ .el-textarea {
-                        padding: 0;
-                        padding-left: 0.1rem;
-                        border: none;
-                        height: 100%;
+               .el-form {
+                // border: 1px solid red;
+                margin-top: 0.2rem;
+                position: relative;
+
+                /deep/ .el-form-item__label {
+                    // border: 1px solid red;
+                    padding-right: 0.2rem !important;
+                    line-height: 0.4rem;
+                }
+
+                .el-form-item {
+                    // border: 1px solid blue;
+                    position: relative;
+                    margin-bottom: 0.3rem !important;
+                    white-space: nowrap;
+                    height: 0.4rem;
+
+                    /deep/ .el-form-item__content {
                         // border: 1px solid red;
+                        height: 100%;
+                        line-height: 0.4rem !important;
+                        // color: red !important;
                     }
 
- /deep/ .el-textarea__inner {
+                    /deep/ .el-input {
+                        // border: 1px solid red;
+                        height: 100% !important;
+                    }
+
+                    /deep/ .el-input__inner {
+                        // border: 1px solid red !important;
+                        height: 100% !important;
+                        line-height: 0.4rem !important;
+                    }
+
+                    /deep/ .el-textarea__inner {
                         height: 100%;
                         padding: 0;
                         border: none;
                     }
+                }
+            }
 
 ```
 
