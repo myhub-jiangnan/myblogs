@@ -33,6 +33,7 @@
  ES6 直接实现了组件化开发可以直接将某个变量暴露出去，其他地方要用直接导入进来就行
 
 ```javascript
+
  // a.js 文件 
   var name ="jack",
   var showName = function(){
@@ -44,7 +45,11 @@
 <font color="red" size="5">// 注意： type必须是module，文件是私密的，必须import来能复用代码；</font> 
   import {name ,showName} form "../a.js"  <font color="red" size="5">// 注意： 导入的时候变量名必须同名</font> 
 
+ ``` 
+
 ## export 和 export default 的区别
+
+```
 
 1. export 可以用来导出多个对象： export {}     // 必须用大括号括起来
    export default 只能用来导出一个对象： export default obj    // 不需要大括号
@@ -53,3 +58,37 @@
    export 导出的， import 引入的时候也要加{} ：  import { obj1,obj2}  from "../" 
    
    export default导出的： 引入的时候可以修改变量名：   import  newName from "../"
+
+   ```
+
+## import 和import()
+
+
+  ### 静态引入
+
+```
+a.
+// request.js
+exprot {request}
+import {request} from "./request.js"  // 名字必须一一对应
+// 直接使用 request 
+
+b.request.js
+
+export default {request}
+
+import  myRequest from "./request.js"  
+
+// 通过对象的方式引用： myRequest.request
+  
+
+```
+
+###  动态引入
+
+import() 函数是 es2020 提案中才支持的，支持动态加载模块
+
+let request = "request"
+
+import(`./index/${request}.js`)
+

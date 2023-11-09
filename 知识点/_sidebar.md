@@ -1,0 +1,5 @@
+* [JS高级](知识点/JS高级)
+* [JavaScript](知识点/JavaScript)
+* [key的作用](知识点/key的作用)
+* [vue中的diff算法](知识点/vue中的diff算法)
+* [vue性能优化](知识点/vue性能优化)

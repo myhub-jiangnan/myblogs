@@ -50,7 +50,7 @@
         console.log(data)  // abc
     })
 
-    采用链式的then，then方法指定的回调函数返回的数据， 会作为第二个then方法指定回调函数的参数；
+    采用链式的then，then方法指定的回调函数返回的数据，也是一个promise对象,会作为第二个then方法指定回调函数的参数；
 ```
 
 ## 2. Promise.prototype.catch()

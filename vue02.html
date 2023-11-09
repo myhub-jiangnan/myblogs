@@ -10,24 +10,10 @@
 <body>
     <script>
   
-
-     let handler = {
-         get(target,name){
-             console.log("target:",target);
-             console.log("name:",name);
-             return "hello"
-         }
          
-     }
-
-     let p = new Proxy({},handler)
-
-     p.a = 1
-     p.b = 1111
-     console.log(p.a);
-     console.log(p.b);
-
-
+  for(let i=0;i<10;i++){
+      console.log(i);
+  }
 
     </script>
 </body>

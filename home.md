@@ -1,40 +1,48 @@
-#  ToDoList
+# ToDoList
+
+
+
+
     
-    初衷： 屡清思路。 先写100万字。
->  1. 进步的规律
+ ### 日拱一卒,功不唐捐。
+ 
 
+> ✅   《Vue3设计与实现》 
 
+> ✅ 《JavaScript 高级程序设计》
 
+> ✅ 《JavaScript 悟道》 
 
-https://efe.baidu.com/blog/echarts-map-tutorial/
+> ✅  《JavaScript 语言精粹》 
 
-> 文字超出省略的实现
+> ⬜ 《JavaScript 二十年 》
 
-> flex布局中的给子元素设置固定宽度不起作用，会被压缩，这时设置子元素flex-shrink：0 ; 就不会被压缩；
+> ⬜ 《JavaScript 忍者秘籍 》
 
-> HTML5新标签： <detail></detail>  <progress id="file" value="32" max="100"> 32% </progress>
+> ⬜ 《你不知道的JavaScript》
 
-> setInterval(), setTimeout(), clearInterval() ,clearTimeout()
+> ⬜ 《web性能权威指南》
 
-=60 
-"获取验证码"隐藏，60s 展示， 开启定时器， 60s 减小
+> ⬜  node 开发视频教学
 
+> ⬜ 《深入浅出node》
 
-> Echarts  画图  https://blog.csdn.net/qq_36437172/article/details/106099547
+> ⬜ 《http 权威指南》
 
-> Object.defineproperty()  value，writeable 和 get()set() 不能同时用
+> ⬜ 《数据结构》
 
-> 《剖析 Vue.js 内部运行机制》
+> ⬜ 《算法》
 
-> 1. vue3.0 学习
+> ⬜ 如下概念
 
-> 2. 要习惯阅读英文文档
-
-
-
--------
-
-
+```
+  定时器（Timers）
+Promises
+闭包（Closures）
+事件循环（Event Loop）
+异步编程（Async programming）和回调（callbacks）
+深拷贝浅拷贝
+```
 
 
 

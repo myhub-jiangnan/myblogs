@@ -3,141 +3,50 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .con {
-            border: 1px solid red;
-            position: relative;
-            display: inline-block;
-            height: 200px;
-            width: 200px;
-        }
 
-        .percent-circle {
-            position: absolute;
-            height: 100%;
-            background: #f00;
-            overflow: hidden;
-        }
-
-        .percent-circle-left {
-            width: 100px;
-            border-radius: 100px 0 0 100px/100px 0 0 100px;
-        }
-
-        .percent-circle-left .left-content {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            transform-origin: right center;
-            transform: rotate(0deg);
-            border-radius: 100px 0 0 100px/100px 0 0 100px;
-            background: #bbb;
-        }
-
-        .percent-circle-right {
-            right: 0;
-            width: 100px;
-            border-radius: 0 100px 100px 0/0 100px 100px 0;
-        }
-
-        .percent-circle-right .right-content {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            transform-origin: left center;
-            transform: rotate(0deg);
-            border-radius: 0 100px 100px 0/0 100px 100px 0;
-            background: #bbb;
-        }
-
-        .text-circle {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 80%;
-            width: 80%;
-            left: 10%;
-            top: 10%;
-            border-radius: 100%;
-            background: white;
-            color: red;
-        }
-    </style>
-</head>
 
 <body>
-    <div class="con">
-        <div class="percent-circle percent-circle-left">
-            <div class="left-content"></div>
-        </div>
-        <div class="percent-circle percent-circle-right">
-            <div class="right-content"></div>
-        </div>
-        <div class="text-circle">0%</div>
+
+
+    <div>
+
+
+        <h2>无防抖操作</h2>
+        <input type="text" id="inp">
+
+        <h2>防抖操作</h2>
+        <input type="text" id="inp2">
+
     </div>
     <script>
-        var leftContent = document.querySelector(".left-content");
-        var rightContent = document.querySelector(".right-content");
-        var textCircle = document.querySelector(".text-circle");
-        leftContent.setAttribute('style', 'transform: rotate(' + 90 + 'deg)');
-    </script>
-    <script>
-        let defineReactive = function (obj, key, val) {
-            let Dep; // 收集依赖的数组
-            // 数据劫持
-            Object.defineProperty(obj, key, {
-                writable:true,
-                value:"jack",
-                enumerable: true,
-                get() {
-                    console.log(`读取了对象的${JSON.stringify(key)}属性`);
-                    Dep.depend(); // 添加依赖
-                    return val
 
-                },
-                
-                set(newVal) {                     
-                    if (newVal === val) {
-                        return
-                    }
-                    val = newVal
-                    Dep.notify(); // 通知依赖去更新
-                    console.log(`修改了对象的${key}属性值`);
+        let inp = document.getElementById("inp")
+        inp.addEventListener("input", () => {
+            console.log(inp.value);
+        })
 
-                }
-            })
+        document.getElementById("inp2").addEventListener("input",  debounce(function(){
+                console.log(this.value);
+            },2000))
+
+        function debounce(fn, delay) {
+            let timer = null
+            return function () {
+                if(timer) return
+                timer = setTimeout(() => {
+                    fn.call(this,arguments)
+                   timer= null
+                }, delay)
+            }
+
         }
-
-        let data = {
-            // name: "江南"
-        }
-        // 数据劫持
-        defineReactive(data, "name", data.name)
-        console.log(data.name);
-        data.name = "江北"
-
- //    一个属性对应一个Dep,  
-
-
-  //  Dep.target   
-
-  // 编译模板的时候，遇到特殊指令比如： v-model="name" , 在准备为name 创建watcher 之前，先把它挂在在全局静态变量Dep.target 上，然后出发一次get()函数
-
-   Observe()  // 观测数据
-   Dep()   // 管理依赖
-   Watcher()  //  每一个Watcher 实例对应一个依赖
-   VNode()  // 生一个虚拟DOM
-
-
 
 
 
     </script>
+
+
 </body>
 
 </html>
