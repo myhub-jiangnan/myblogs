@@ -5,15 +5,15 @@
 
  1.创建一个App 组件, 在创建vue实例的main.js文件中引入。
 
- 2. 在vue 实例中,我们直接将引入的App组件交给render 函数去渲染。
+ 2. 在vue 实例化过程中,我们直接将引入的App组件作为模板交给Vue去编译出一个真实DOM。
 
- 3. 用渲染出来的模板替换index.html 文件中的id 为app 的div。
+ 3. 用Vue编译出的真实DOM替换index.html 文件中的id 为app 的div。
 
  4. 最终App组件中是什么内容，index.html 显示的就是什么内容。
 
  5. 整个项目只创建一个vue实例对象，一个vue实例对象的render函数只能传入一个模板,
  
-    因此只能是一个组件(App组件)，只需要一个html 页面(idex.html)。
+    因此只需要一个组件(App组件)，只需要一个html 页面(idex.html)。
  
  6. 但是我们要实现多页面的效果怎么办? 那就不断更换App组件里的内容,相应的index.html呈现的页面内容就不一样。
     也就达到了多页面的效果。

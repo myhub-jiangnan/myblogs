@@ -3,50 +3,89 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>手写Promise</title>
 
 
 <body>
-
-
-    <div>
-
-
-        <h2>无防抖操作</h2>
-        <input type="text" id="inp">
-
-        <h2>防抖操作</h2>
-        <input type="text" id="inp2">
-
-    </div>
     <script>
-
-        let inp = document.getElementById("inp")
-        inp.addEventListener("input", () => {
-            console.log(inp.value);
-        })
-
-        document.getElementById("inp2").addEventListener("input",  debounce(function(){
-                console.log(this.value);
-            },2000))
-
-        function debounce(fn, delay) {
-            let timer = null
-            return function () {
-                if(timer) return
-                timer = setTimeout(() => {
-                    fn.call(this,arguments)
-                   timer= null
-                }, delay)
+      class MyPromise{
+            constructor(executor){
+                this.state = "pending",
+                this.response = null,
+                this.err = null;
+                this.onResolvedCallback=[]
+                this.onRejectedCallback=[]
+                let resolve = (data)=>{
+                    if(this.state==="pending"){
+                        this.state ="fulfilled"
+                        this.response = data
+                        this.onResolvedCallback.map(item=>item())
+                    }
+                   
+                }
+                let reject = (data)=>{
+                    if(this.state==="pending"){
+                        this.state = "rejected"
+                        this.err = data
+                        this.onRejectedCallback.map(item=>item())
+                    }
+                }
+                executor(resolve,reject)
             }
 
+            then(onResolved,onRejected){
+                return  new Promise((resolve,reject)=>{
+                if(this.state==="fulfilled"){
+                   let x= onResolved(this.response)
+                   resolvePromise(x,resolve,reject)
+                }
+                if(this.state==="rejected"){
+                    onRejected(this.err)
+                }
+                if(this.state==="pending"){
+                    this.onResolvedCallback.push(()=>{
+                        onResolved(this.response)
+                    })
+                    this.onRejectedCallback.push(()=>{
+                        onRejected(this.err)
+                    })
+                }
+
+            })
+               
+            }
+        }
+
+        function resolvePromise(x,resolve,reject){
+            // 判断X 是否是一个promise
+            if(x instanceof Promise){
+                x.then(val=>{
+                 resolve(val)
+                },err=>{
+                    reject(err)
+                })
+            }else{
+                //普通值
+                resolve(x)
+            }
         }
 
 
+    new MyPromise((resolve,reject)=>{
+        resolve("传给第一个then")
+      }). then(res=>{
+        console.log(res);
+        console.log( new MyPromise((resolve,reject)=>{
+            resolve("传给第二个then")
+        }));
+        return new MyPromise((resolve,reject)=>{
+            resolve("传给第二个then")
+        })
+      }).then(res=>{
+        console.log(res);
+      })
 
     </script>
-
-
 </body>
 
 </html>

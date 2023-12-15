@@ -1,185 +1,72 @@
 
+# vue 响应式原理
 
-## Object.defineProperty(obj,prop,descriptor)
+vue 的响应式指的是，当修改了某个数据，所有引用了这个数据的组件都会自动更新视图。概括来说，就是数据驱动视图的自动更新。
 
-obj: 要定义属性的对象；
 
-prop: 要定义或修改的属性名;
+为了实现响应式，要解决两个问题：
 
-descriptor: 属性描述符;
+#### 1. 数据什么时候变了;(数据劫持)
 
-属性描述符分两大类： 数据属性和访问器属性（存取器属性）
+ Vue中通过Observe 这个类实现了数据的劫持，核心是用Object.defineProperty() 这个API,把传入的对象作为data选项，并把所有的属性转为getter和setter, 这样数据的读取和修改操作都能监测到。
 
-1. 对象属性的作用就是用来存储数据；
+#### 2. 组件哪些地方用到了数据;(模板解析)
 
-2. 既然有数据存储，就会有数据的增删改查操作（增加属性，修改属性值，获取属性值，删除属性）
+vue 对模板字符串进行解析， 模板字符串 => ast => render字符串 => render函数 => vnode =>真实DOM , 在render 字符串变成render函数的过程中，
+用到with()方法，使render函数中的变量指向的就是vm 实例上的属性。这样模板中引用了哪些数据都能被检测到。
 
-3. 属性描述符中的数据属性用于控制属性的增删改查操作特征;
 
-4. 访问器属性用于监听属性的存储过程;
+## 解决了上面两个大方向上的问题，如何整合起来实现响应式？要用到下面4个类: 
 
+#### Observer类
 
-> 数据属性中的value 和writable 和访问器属性不能同时存在
+给所有的属性添加getter 和setter ,这样读取和修改时都能被监测到
 
+#### Dep类
 
+实现依赖收集： 每个属性都有一个对应的dep 实例， 如果该属性在模板中被引用了，会触发getter()就会在dep 的一个数组里添加一个watcher，
+触发setter(),该属性对应的dep 实例，就会把添加了的watcher 执行。 
 
-## 数据属性
-```
- let person = {}
-Object.defineProperty(person,"name",{
-  configurable:false,  // 为true时 该属性就能被删除
-  enumerable:false,// 为true时 可枚举
-  value:undefined, // 该属性的值，默认为undefined
-  writable:false,  // 为true 时属性值才能被赋值运算符改变
+#### Watcher
 
-})
+封装了组件重新渲染的操作
 
-```
+vm._update(vm._render()
 
-## 访问器属性
+#### Schedule 
 
-```
-  let p= {}
+每次修改数据就执行：  vm._updata(vm._render()) 性能消耗太大,利用Schedule实现组件的异步更新
 
- Object.defineProperty(p,"name",{
-     // 注意 get里取name 要用下划线，否则报错
-     get(){
-        return p._name
-     },
-     set(val){
-          p._name= val
-     }
- })
 
- 总结： 对p 对象进行数据劫持，可以监视到p 对象属性的读取和修改操作。
 
- 缺点： 不能检测到对象属性的 添加和删除操作。        
+#### 概念补充：
 
-```
->  有get 方法没有set 方法，该属性就只能取值不能赋值；
+1.watcher：封装了组件重新渲染操作(vm._update(vm._render()) 的对象。
 
-对象取值时会调用get方法，取到的值为get方法返回的值，默认为undefined,
+2. 一个组件只有一个 watcher实例。每个组件会 new Watcher() 一个watcher 实例
 
-对象赋值时会调用set方法
+   一个组件中有n个属性， n个属性就有n个dep ，  n个dep 对应一个watcher 
 
->  person.name = "jack" 相当于执行了 set("jack")
+   一个属性可以对应多个组件， 1个dep 对应多个watcher  ,所以 dep 和watcher 是多对多的关系
 
 
-## vue2 响应式原理
+3.依赖收集： 即哪些属性被组件引用了,把这些属性作一个标记，就是所谓的依赖收集。同一个属性在同一个组件中被多次引用，要避免重复收集。
 
-```
- let person = {
-  name:"jack",
-  age:18
- }
+4. 初次渲染组件，会实例化一个渲染watcher ，我们可以把当前这个watcher 放到Dep.target 上，Dep.target 初始值为null
 
-  let p= {}
 
- Object.defineProperty(p,"name",{
-     get(){
-         return person.name   //  读取p 对象的name 属性，返回person对象的name 属性
-     },
-     set(val){
-         person.name = val   // p 对象的name 属性修改了，则让person 对象的name 属性也跟着改
-     }
- })
 
- 总结： 对p 对象进行数据劫持，可以监视到p 对象属性的读取和修改操作，当读取p 对象的name 属性时，我们返回person 对象的name属性，
 
-        修改p的name属性时，我们也修改person 对象的name属性，
 
-        这样p 和person 两个对象就做到了数据的响应式。这也是vue2 实现响应式的原理。
 
- 缺点： 不能检测到对象属性的 添加和删除操作。 所以vue2中data中的属性，需要在数据初始化前就要添加上，才能做到数据的响应式。
- 
-  当然vue 也提供了Vue.set()，对新添加的数据实现响应式。  
 
-```
 
 
+## new Vue() 后的会执行的任务流程
 
-## vue  源码
+1.new Vue() => 合并选项=> beforeCreate() => data中的属性代理到vm=> 对data 进行数据劫持，给每个属性，添加getter和setter,同时实例化一个dep,由于闭包，这个dep 不会销毁 => created ()
 
-
-
-> 数据监测
-
-### 1. vue 中的observer类会通过递归的方法，把一个对象的所有属性转化成观测对象,这就是所谓的数据劫持；
-
-### 2. 视图层中谁用到了这个数据，就是所谓的谁依赖了这个数据，我们给每个数据建立一个依赖数组，谁依赖了这个数据，就把谁放入这个数据的依赖数组中；当这个数据发生变化时，就去对应的依赖数组中，把每个依赖通知一遍。这个过程就是所谓的依赖收集。这样可以高效精准的更新视图层。
-
-### 3.当某个数据被调用时,就会触发getter,赋值时就会调用setter, 因此我们可以在getter中收集依赖，在setter中通知依赖；
-
-### 4. 仅仅用数组来管理依赖功能过于欠缺，我们应该将依赖数组的功能扩展一下。vue 的做法是创建一个依赖管理器，也就是Dep 类，这个类中不仅有存放依赖的数组，还有对依赖进行添加，删除，通知等操作的方法；
-
-### 5. 有了依赖管理器后，我们就可以在getter中收集依赖，在setter中通知依赖更新
-
-### 6. "谁用到了这个数据谁就是依赖"，反应在代码上，这个"谁"就是watcher类的实例。当数据发生变化时，不去直接通知这个依赖，而是这个依赖对应的watcher实例，再由watcher实例去通知真正的视图。所以依赖数组中放的是watcher 实例
-
-### 7. Watcher类的构造函数中，在get()方法中，我们通过 window.target = this 把实例自身赋给了全局的一个唯一对象window.target上；
-    通过 let value = this.getter.call(vm,vm) 获取被依赖的数据， 这样就触发了 该数据上的getter(),而getter()里会调用dep.depend()收集依赖，
-
-
-> 虚拟DOM 
-
-### 1. 所谓虚拟DOM 就是用一个JS 对象来描述一个DOM 节点
-
-```
- <div id="a" class="b">我是内容</div>
-
-
-{
-  tag:'div',        // 元素标签
-  attrs:{           // 属性
-    class:'a',
-    id:'b'
-  },
-  text:'我是内容',  // 文本内容
-  children:[]       // 子元素
-}
-
-
-```
-
-我们把这个JS 对象称为是真实DOM节点的虚拟DOM节点。
-
-### 2. 为什么要有虚拟DOM
-
-VUE 是数据驱动视图的，当数据发生变化时就要随之更新视图，要更新视图就要操作DOM, 而操作DOM 是非常耗费性能的，因为浏览器的标准就把DOM 设计的非常复杂。
-
-因此我们可以用js的计算性能来换取操作DOM 消耗的性能.
-
-我们可以用JS模拟出一个DOM节点，称之为虚拟DOM节点。当数据发生变化时，我们对比变化前后的虚拟DOM节点，通过DOM-Diff算法计算出需要更新的地方，然后去更新需要更新的视图。
-
-这样就减少了操作真实DOM,大大提高了性能。
-
-### 3. VNode类
-
-通过这个类 我们可以实例化出不同类型的虚拟DOM 节点
-
-
-### 4. VNode 虚拟节点
-
-虚拟节点的作用： 在视图渲染前，把写好的template模板先编译成VNode 并缓存起来，等数据发生变化需要重新渲染时，我们把数据变化后生成的VNode 和前面缓存好的
-VNode 进行对比，找出差异，有差异的VNode对应的真实DOM 节点就是需要重新渲染的节点。
-
-根据有差异的VNode,创建出真实的DOM，再插入到视图中，最终完成一次视图的更新。
-
-### 5. dom-diff
-
-对比新旧两份VNode 并找出差异的过程就是所谓的dom-diff 过程。 dom-diff 算法是整个虚拟DOM 核心所在.
-
-> 模板编译
-
-### 1. render函数
-
-用户写的<template></template>标签中的类似于原生HTML的内容称之为模板，进行编译就会产生VNode  。
-
-把原生HTML 的内容找出，再把非原生HTML 找出来，经过一系列的处理生成渲染函数，也就是render函数。render函数会将模板内容生成对应的VNode，这一过程称之为模板编译
-
-### 2. 抽象语法树
-
-模板编译过程中借助抽象语法树这一概念， 把模板用一个JS对象来描述。
+2.模板编译： 模板字符串 => ast => render字符串 => render函数=>new Watcher() => 将当前watcher 添加到dep =>  vm._updata(vm._render())
 
 
 
